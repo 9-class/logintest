@@ -1,6 +1,6 @@
 <?php
-session_start();
-session_destroy();
-// Redirect to the login page:
-header('Location: index.html');
+    session_start();
+    unset($_SESSION["id"]);
+    unset($_SESSION["name"]);
+    header("Location:login.php");
 ?>

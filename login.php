@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,23 +19,20 @@
 </head>
 <body>
 <div class="signup-form">
-    <form action="home.php" method="post" enctype="multipart/form-data">
-		<h2>Welcome</h2>
-        <br>
-
-            <?php
-				session_start();
-				include 'database.php';
-				$ID= $_SESSION["ID"];
-				$sql=mysqli_query($conn,"SELECT * FROM register where ID='$ID' ");
-				$row  = mysqli_fetch_array($sql);
-            ?>
-            
-        <img src="upload/<?php echo $row['File'] ?>" height="150" width="150" style="border-radius:50%;display:block;margin-left:auto;margin-right:auto;" />
-		<p class="hint-text"><br><b>Welcome </b><?php echo $_SESSION["First_Name"] ?> <?php echo $_SESSION["Last_Name"] ?></p>
-        <div class="text-center">Want to Leave the Page? <br><a href="logout.php">Logout</a></div>
+    <form action="loginProcess.php" method="post" enctype="multipart/form-data">
+		<h2>Login</h2>
+		<p class="hint-text">Enter Login Details</p>
+        <div class="form-group">
+        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" name="pass" placeholder="Password" required="required">
+        </div>
+		<div class="form-group">
+            <button type="submit" name="save" class="btn btn-success btn-lg btn-block">Login</button>
+        </div>
+        <div class="text-center">Don't have an account? <a href="register.php">Register Here</a></div>
     </form>
-	
 </div>
 </body>
 </html>
